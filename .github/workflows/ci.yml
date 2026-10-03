@@ -72,11 +72,16 @@ jobs:
           fetch-depth: 0
 
       - name: Scan for secrets
+        # uses: gitleaks/gitleaks-action@v2
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #   - name: Scan for secrets
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: true
 
-  manifests:
+manifests:
     name: k8s manifests
     runs-on: ubuntu-latest
     timeout-minutes: 5
